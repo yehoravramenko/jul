@@ -1,0 +1,19 @@
+/* std.io example implementation
+
+namespace std;
+class io {
+  public println() {
+    // some printing stuff . . .
+  };
+};
+
+*/
+
+
+//namespace main;
+//include std.io as io
+
+main() : i32 {
+  //io.println("hello from Jul - Just Useful programming Language!");
+  return 0;
+}
