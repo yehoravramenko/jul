@@ -1,4 +1,4 @@
-JUL = $(BUILD_DIR)/jul
+JUL = $(BUILD_DIR)/bin/jul
 
 CC := gcc
 
@@ -11,16 +11,16 @@ OBJS := $(SOURCE_FILES:%.c=$(OBJ_DIR)/%.o)
 # CFLAGS :=
 # LFLAGS :=
 
-.PHONY: all
-all: $(OBJ_DIR) $(BUILD_DIR) $(JUL)
+.PHONY: jul
+jul: $(OBJ_DIR) $(BUILD_DIR) $(JUL)
 
 $(OBJ_DIR):
 	mkdir -p obj
 
 $(BUILD_DIR):
 	mkdir -p build
+	mkdir -p build/bin
 
-.PHONY: $(JUL)
 $(JUL): $(OBJS)
 	$(CC) -o $@ $^
 
