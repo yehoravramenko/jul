@@ -1,7 +1,11 @@
-#include <stdio.h>
+#include "compiler_msg.h"
 
-int main(void)
+int main(int argc, char **argv)
 {
-    printf("%s\n", "jul!");
+    compiler_msg("jul");
+    if (argc < 2) {
+        compiler_error("No file specified."
+                    "\n\nUsage: jul [target](.jul) <options>");
+    }
     return 0;
 }

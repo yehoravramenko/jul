@@ -4,11 +4,11 @@ CC := gcc
 
 OBJ_DIR := obj
 BUILD_DIR := build
-SOURCE_FILES := main.c
+SOURCE_FILES := main.c compiler_msg.c
 SRCS := $(SOURCE_FILES:%.c=src/%.c)
 OBJS := $(SOURCE_FILES:%.c=$(OBJ_DIR)/%.o)
 
-# CFLAGS :=
+CFLAGS := -Wall -Wextra -xc -std=c23
 # LFLAGS :=
 
 .PHONY: jul
@@ -24,8 +24,8 @@ $(BUILD_DIR):
 $(JUL): $(OBJS)
 	$(CC) -o $@ $^
 
-$(OBJS): $(SRCS)
-	$(CC) -c -o $@ $^
+$(OBJ_DIR)/%.o: src/%.c
+	$(CC) -c -o $@ $<
 
 .PHONY: clean
 clean:
