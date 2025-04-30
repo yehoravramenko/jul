@@ -1,14 +1,13 @@
 JUL = $(BUILD_DIR)/bin/jul
 
-CC := gcc
+CC := g++
 
 OBJ_DIR := obj
 BUILD_DIR := build
-SOURCE_FILES := main.c compiler_msg.c
-SRCS := $(SOURCE_FILES:%.c=src/%.c)
-OBJS := $(SOURCE_FILES:%.c=$(OBJ_DIR)/%.o)
+SOURCE_FILES := main.cpp compiler_msg.cpp
+OBJS := $(SOURCE_FILES:%.cpp=$(OBJ_DIR)/%.o)
 
-CFLAGS := -Wall -Wextra -xc -std=c23
+CFLAGS := -Wall -Wextra -Werror -xc++ -std=c++23
 # LFLAGS :=
 
 .PHONY: jul
@@ -24,8 +23,8 @@ $(BUILD_DIR):
 $(JUL): $(OBJS)
 	$(CC) -o $@ $^
 
-$(OBJ_DIR)/%.o: src/%.c
-	$(CC) -c -o $@ $<
+$(OBJ_DIR)/%.o: src/%.cpp
+	$(CC) $(CFLAGS) -c -o $@ $<
 
 .PHONY: clean
 clean:
