@@ -1,13 +1,13 @@
 JUL = $(BUILD_DIR)/bin/jul
 
-CC := clang++
+CC := g++
 
 OBJ_DIR := obj
 BUILD_DIR := build
-SOURCE_FILES := main.cpp compiler_msg.cpp
+SOURCE_FILES := main.cpp compiler_msg.cpp lexer.cpp
 OBJS := $(SOURCE_FILES:%.cpp=$(OBJ_DIR)/%.o)
 
-CFLAGS := -Wall -Wextra -Werror -xc++ -std=c++23
+CFLAGS := -Wall -Wpedantic -Wextra -Werror -xc++ -std=c++23 -g
 # LFLAGS :=
 
 .PHONY: jul

@@ -1,0 +1,6 @@
+/* that's a nitty-gritty comment */
+
+main() : i32 
+{
+  return 0;
+}

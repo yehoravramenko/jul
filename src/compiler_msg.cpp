@@ -9,6 +9,7 @@ enum class TextColor {
     Red = 31,
     Green = 32,
     Yellow = 33,
+    Magenta = 35,
 };
 
 enum class TextStyle {
@@ -40,7 +41,7 @@ namespace compiler
 auto error(std::string_view Msg) -> void
 {
     ::printLog(Msg, ::colorize(TextColor::Red, TextStyle::Bold) + "error");
-    exit(-1);
+    std::exit(1);
 }
 
 auto warning(std::string_view Msg) -> void
@@ -48,9 +49,15 @@ auto warning(std::string_view Msg) -> void
     ::printLog(Msg, ::colorize(TextColor::Yellow, TextStyle::Bold) + "warning");
 }
 
-auto msg(std::string_view Msg) -> void
+auto log(std::string_view Msg) -> void
 {
     ::printLog(Msg);
+}
+
+auto todo(std::string_view Msg) -> void
+{
+    ::printLog(Msg, ::colorize(TextColor::Magenta, TextStyle::Bold) + "todo");
+    std::exit(1);
 }
 
 } // namespace compiler

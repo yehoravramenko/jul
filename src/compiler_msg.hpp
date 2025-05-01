@@ -3,7 +3,10 @@
 
 namespace compiler
 {
+
 auto error(std::string_view Msg) -> void;
 auto warning(std::string_view Msg) -> void;
-auto msg(std::string_view Msg) -> void;
+auto log(std::string_view Msg) -> void;
+auto todo(std::string_view Msg) -> void;
+
 } // namespace compiler

@@ -1,0 +1,59 @@
+[
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-Wall",
+      "-Wpedantic",
+      "-Wextra",
+      "-Werror",
+      "-xc++",
+      "-std=c++23",
+      "-g",
+      "-c",
+      "-o",
+      "obj/compiler_msg.o",
+      "src/compiler_msg.cpp"
+    ],
+    "directory": "/home/yehor/aura/jul",
+    "file": "/home/yehor/aura/jul/src/compiler_msg.cpp",
+    "output": "/home/yehor/aura/jul/obj/compiler_msg.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-Wall",
+      "-Wpedantic",
+      "-Wextra",
+      "-Werror",
+      "-xc++",
+      "-std=c++23",
+      "-g",
+      "-c",
+      "-o",
+      "obj/lexer.o",
+      "src/lexer.cpp"
+    ],
+    "directory": "/home/yehor/aura/jul",
+    "file": "/home/yehor/aura/jul/src/lexer.cpp",
+    "output": "/home/yehor/aura/jul/obj/lexer.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-Wall",
+      "-Wpedantic",
+      "-Wextra",
+      "-Werror",
+      "-xc++",
+      "-std=c++23",
+      "-g",
+      "-c",
+      "-o",
+      "obj/main.o",
+      "src/main.cpp"
+    ],
+    "directory": "/home/yehor/aura/jul",
+    "file": "/home/yehor/aura/jul/src/main.cpp",
+    "output": "/home/yehor/aura/jul/obj/main.o"
+  }
+]
