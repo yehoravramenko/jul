@@ -1,6 +1,6 @@
 JUL = $(BUILD_DIR)/bin/jul
 
-CC := g++
+CC := clang++
 
 OBJ_DIR := obj
 BUILD_DIR := build
@@ -29,3 +29,6 @@ $(OBJ_DIR)/%.o: src/%.cpp
 .PHONY: clean
 clean:
 	rm -rf $(OBJ_DIR) $(BUILD_DIR)
+
+.PHONY: cleanbuild
+cleanbuild: clean jul

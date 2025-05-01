@@ -1,8 +1,9 @@
 #pragma once
+#include <string_view>
 
-//TODO: Implement colors
-namespace Compiler {
-    void Error(const char *msg);
-    void Warning(const char *msg);
-    void Msg(const char *msg);
-}
+namespace compiler
+{
+auto error(std::string_view Msg) -> void;
+auto warning(std::string_view Msg) -> void;
+auto msg(std::string_view Msg) -> void;
+} // namespace compiler
