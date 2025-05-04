@@ -1,6 +1,8 @@
 #pragma once
 #include <string>
 #include <string_view>
+#include <variant>
+#include <vector>
 
 namespace compiler
 {
@@ -8,7 +10,7 @@ namespace compiler
 enum class TokenType {
     Eof = -1,
 
-    Id = 0,
+    Identifier = 0,
     Keyword,
     IntLit,
 
@@ -22,25 +24,44 @@ enum class TokenType {
     Semicolon,
 };
 
+constexpr std::string TTYPE_DBG[] = {
+    "Identifier", "Keyword",    "IntLit", "OpenCurly", "CloseCurly",
+    "OpenParen",  "CloseParen", "Colon",  "Semicolon",
+};
+
+struct Token {
+    TokenType type;
+    std::variant<std::string, int> stringValue, intValue;
+};
+
 class Lexer
 {
   public:
-    Lexer(std::string_view Filepath);
-    auto getNextToken() -> void;
+    Lexer(std::string_view filepath);
+    auto tokenizeFile() -> void;
+
+    auto getTokensList() -> std::vector<Token> & { return this->tokens; };
 
   private:
     auto getNextChar() -> void;
+    auto stepBack() -> void;
+    static auto isKeyword(std::string_view value) -> bool;
 
-    std::string CurrentFile;
-    size_t FilePos;
+    auto getNextToken() -> void;
 
-    char CurChar;
-    char PrevChar;
+    auto debugTokens() -> void;
 
-    TokenType CurrentToken;
+    std::string file;
+    int filePos;
 
-    int IntLitValue;
-    std::string Identifier;
+    // TODO: Write line number and its offset in error message
+    // size_t FileLine;
+    // size_t FileLineOffset;
+
+    char curChar;
+    char prevChar;
+
+    std::vector<Token> tokens;
 };
 
 } // namespace compiler

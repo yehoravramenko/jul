@@ -2,6 +2,7 @@
 #include "lexer.hpp"
 
 #include <string>
+#include <string_view>
 #include <vector>
 
 #include <filesystem>
@@ -14,7 +15,7 @@ auto main(int argc, char **argv) -> int
                         "Usage: jul [target](.jul) <options>");
     }
 
-    std::vector<std::string> SourceFiles = {};
+    std::vector<std::string> sourceFiles = {};
 
     for (auto i = 1; i < argc; ++i) {
         if (argv[i][0] != '-') {
@@ -25,13 +26,13 @@ auto main(int argc, char **argv) -> int
             if (!fs::exists(f)) {
                 compiler::error("Could not find file " + f);
             }
-            SourceFiles.push_back(f);
+            sourceFiles.push_back(f);
         } else {
             compiler::todo("Parse compiler options");
         }
     }
 
-    compiler::Lexer Lexer{SourceFiles[0]};
-    Lexer.getNextToken();
+    compiler::Lexer Lexer{sourceFiles[0]};
+    Lexer.tokenizeFile();
     return 0;
 }
