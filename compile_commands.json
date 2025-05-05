@@ -2,25 +2,8 @@
   {
     "arguments": [
       "/usr/bin/g++",
-      "-Wall",
-      "-Wpedantic",
-      "-Wextra",
-      "-Werror",
-      "-xc++",
-      "-std=c++23",
-      "-g",
-      "-c",
-      "-o",
-      "obj/compiler_msg.o",
-      "src/compiler_msg.cpp"
-    ],
-    "directory": "/home/yehor/aura/jul",
-    "file": "/home/yehor/aura/jul/src/compiler_msg.cpp",
-    "output": "/home/yehor/aura/jul/obj/compiler_msg.o"
-  },
-  {
-    "arguments": [
-      "/usr/bin/g++",
+      "-Ithirdparty",
+      "-Ithirdparty/fmt/include",
       "-Wall",
       "-Wpedantic",
       "-Wextra",
@@ -40,6 +23,8 @@
   {
     "arguments": [
       "/usr/bin/g++",
+      "-Ithirdparty",
+      "-Ithirdparty/fmt/include",
       "-Wall",
       "-Wpedantic",
       "-Wextra",
@@ -55,5 +40,59 @@
     "directory": "/home/yehor/aura/jul",
     "file": "/home/yehor/aura/jul/src/main.cpp",
     "output": "/home/yehor/aura/jul/obj/main.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-Ithirdparty",
+      "-Ithirdparty/fmt/include",
+      "-Wall",
+      "-Wpedantic",
+      "-Wextra",
+      "-Werror",
+      "-xc++",
+      "-std=c++23",
+      "-g",
+      "-c",
+      "-o",
+      "obj/compiler_msg.o",
+      "src/compiler_msg.cpp"
+    ],
+    "directory": "/home/yehor/aura/jul",
+    "file": "/home/yehor/aura/jul/src/compiler_msg.cpp",
+    "output": "/home/yehor/aura/jul/obj/compiler_msg.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-Ithirdparty",
+      "-Ithirdparty/fmt/include",
+      "-Wall",
+      "-Wpedantic",
+      "-Wextra",
+      "-Werror",
+      "-xc++",
+      "-std=c++23",
+      "-g",
+      "-c",
+      "-o",
+      "obj/parser.o",
+      "src/parser.cpp"
+    ],
+    "directory": "/home/yehor/aura/jul",
+    "file": "/home/yehor/aura/jul/src/parser.cpp",
+    "output": "/home/yehor/aura/jul/obj/parser.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-c",
+      "-o",
+      "obj/fmtlib/format.o",
+      "thirdparty/fmt/src/format.cc"
+    ],
+    "directory": "/home/yehor/aura/jul",
+    "file": "/home/yehor/aura/jul/thirdparty/fmt/src/format.cc",
+    "output": "/home/yehor/aura/jul/obj/fmtlib/format.o"
   }
 ]

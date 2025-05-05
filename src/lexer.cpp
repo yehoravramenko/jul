@@ -10,21 +10,6 @@ constexpr std::string Keywords[] = {"return", "i32"};
 namespace compiler
 {
 
-Lexer::Lexer(std::string_view Filepath)
-{
-    // TODO: Handle errors during reading the file
-
-    auto FStream = std::ifstream(Filepath.data());
-    auto FileSize = FStream.seekg(0, std::ios::end).tellg();
-    this->file = std::string(FileSize, '\0');
-    FStream.seekg(0);
-    FStream.read(this->file.data(), FileSize);
-
-    this->filePos = -1;
-    this->curChar = '\0';
-    this->prevChar = '\0';
-}
-
 auto Lexer::getNextChar() -> void
 {
     if (++this->filePos >= static_cast<int>(this->file.size())) {
@@ -126,7 +111,7 @@ auto Lexer::getNextToken() -> void
         }
 
         // compiler::todo("Parse other tokens in the file");
-        compiler::error("Unexpected character " +
+        compiler::error("Unexpected character {}",
                         std::string(1, this->curChar));
     }
 }
@@ -134,21 +119,33 @@ auto Lexer::getNextToken() -> void
 auto Lexer::debugTokens() -> void
 {
     for (auto &tok : this->tokens) {
-        compiler::log("TOKEN: " +
-                      compiler::TTYPE_DBG[static_cast<int>(tok.type)]);
+        compiler::log("TOKEN: {}", compiler::TokenNames.at(tok.type));
         if (tok.type == TokenType::Identifier ||
             tok.type == TokenType::Keyword) {
-            compiler::log("\tVALUE: " + std::get<std::string>(tok.stringValue));
+            compiler::log("\tVALUE: {}",
+                          std::get<std::string>(tok.stringValue));
         }
     }
 }
 
-auto Lexer::tokenizeFile() -> void
+auto Lexer::tokenizeFile(std::string_view filepath) -> void
 {
+    // TODO: Handle errors during reading the file
+
+    auto FStream = std::ifstream(filepath.data());
+    auto FileSize = FStream.seekg(0, std::ios::end).tellg();
+    this->file = std::string(FileSize, '\0');
+    FStream.seekg(0);
+    FStream.read(this->file.data(), FileSize);
+
+    this->filePos = -1;
+    this->curChar = '\0';
+    this->prevChar = '\0';
+
     while (this->filePos < static_cast<int>(this->file.size()) - 1) {
         this->getNextToken();
     }
-    // this->debugTokens();
+    this->debugTokens();
 }
 
 } // namespace compiler

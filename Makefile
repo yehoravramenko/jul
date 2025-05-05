@@ -4,14 +4,21 @@ CC := g++
 
 OBJ_DIR := obj
 BUILD_DIR := build
-SOURCE_FILES := main.cpp compiler_msg.cpp lexer.cpp
+SOURCE_FILES := main.cpp lexer.cpp parser.cpp
+
+FMTLIB_INC := -Ithirdparty/fmt/include
+
 OBJS := $(SOURCE_FILES:%.cpp=$(OBJ_DIR)/%.o)
 
-CFLAGS := -Wall -Wpedantic -Wextra -Werror -xc++ -std=c++23 -g
-# LFLAGS :=
+CFLAGS := -Ithirdparty $(FMTLIB_INC) -Wall -Wpedantic -Wextra -Werror -xc++ -std=c++23
 
 .PHONY: jul
+jul: CFLAGS += -g
 jul: $(OBJ_DIR) $(BUILD_DIR) $(JUL)
+
+.PHONY: release
+release: $(OBJ_DIR) $(BUILD_DIR) $(JUL)
+	
 
 $(OBJ_DIR):
 	mkdir -p obj
@@ -28,7 +35,7 @@ $(OBJ_DIR)/%.o: src/%.cpp
 
 .PHONY: clean
 clean:
-	rm -rf $(OBJ_DIR) $(BUILD_DIR)
+	rm -rf $(OBJ_DIR) $(BUILD_DIR) .cache
 
-.PHONY: cleanbuild
-cleanbuild: clean jul
+# .PHONY: cleanbuild
+# cleanbuild: clean jul

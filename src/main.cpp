@@ -1,5 +1,6 @@
 #include "compiler_msg.hpp"
 #include "lexer.hpp"
+#include "parser.hpp"
 
 #include <string>
 #include <string_view>
@@ -24,7 +25,7 @@ auto main(int argc, char **argv) -> int
                 f += ".jul";
             }
             if (!fs::exists(f)) {
-                compiler::error("Could not find file " + f);
+                compiler::error("Could not find file {}", std::string_view(f));
             }
             sourceFiles.push_back(f);
         } else {
@@ -32,7 +33,11 @@ auto main(int argc, char **argv) -> int
         }
     }
 
-    compiler::Lexer Lexer{sourceFiles[0]};
-    Lexer.tokenizeFile();
+    compiler::Lexer Lexer{};
+    Lexer.tokenizeFile(sourceFiles[0]);
+
+    compiler::Parser Parser{};
+    Parser.parseTokens(Lexer.getTokensList());
+
     return 0;
 }
