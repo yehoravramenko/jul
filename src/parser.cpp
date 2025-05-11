@@ -6,19 +6,27 @@
 namespace compiler
 {
 
-inline auto Parser::expect(const Token &token) -> void
+auto Parser::expect(const TokenType type) -> void
 {
-    if (this->currentToken->type != token.type) {
-        compiler::error(std::format(
-            "Expected {}, got {}", compiler::TokenNames.at(token.type),
-            compiler::TokenNames.at(this->currentToken->type)));
+    if (this->current_token->type != type) {
+        compiler::error(
+            std::format("Expected {}, got {}", compiler::TokenNames.at(type),
+                        compiler::TokenNames.at(this->current_token->type)));
     }
 }
 
-auto Parser::parseTokens(const std::vector<Token> &tokens) -> void
+auto Parser::get_and_expect(const TokenType type) -> void
 {
-    this->currentToken = &tokens[0];
-    this->expect({TokenType::Identifier, "lul"});
+    this->current_token = tokens[++this->token_index].data();
+    this->expect(type);
+}
+
+auto Parser::parse_tokens(const std::vector<Token> *tokens) -> void
+{
+    this->tokens = tokens;
+    this->current_token = tokens[0].data();
+
+    this->expect(TokenType::Identifier);
 }
 
 } // namespace compiler

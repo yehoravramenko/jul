@@ -40,39 +40,39 @@ constexpr frozen::unordered_map<TokenType, std::string_view, 9> TokenNames = {
 
 struct Token {
     TokenType type;
-    std::variant<std::string, int> stringValue, intValue;
+    std::variant<std::string, int> string_value, int_value;
 
     Token() = default;
     Token(const TokenType t, std::string_view s)
-        : type(t), stringValue(s.data()) {};
-    Token(const TokenType t, int i) : type(t), intValue(i) {};
+        : type(t), string_value(s.data()) {};
+    Token(const TokenType t, int i) : type(t), int_value(i) {};
 };
 
 class Lexer
 {
   public:
-    auto tokenizeFile(std::string_view filepath) -> void;
+    auto tokenize_file(std::string_view filepath) -> void;
 
-    auto getTokensList() -> std::vector<Token> & { return this->tokens; };
+    auto get_tokens_list() -> std::vector<Token> * { return &this->tokens; };
 
   private:
-    auto getNextChar() -> void;
-    auto stepBack() -> void;
-    static auto isKeyword(std::string_view value) -> bool;
+    auto get_next_char() -> void;
+    auto step_back() -> void;
+    static auto is_keyword(std::string_view value) -> bool;
 
-    auto getNextToken() -> void;
+    auto get_next_token() -> void;
 
-    auto debugTokens() -> void;
+    auto debug_tokens() -> void;
 
     std::string file;
-    int filePos;
+    int file_pos;
 
     // TODO: Write line number and its offset in error message
     // size_t FileLine;
     // size_t FileLineOffset;
 
-    char curChar;
-    char prevChar;
+    char cur_char;
+    char prev_char;
 
     std::vector<Token> tokens;
 };

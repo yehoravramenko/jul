@@ -16,7 +16,7 @@ auto main(int argc, char **argv) -> int
                         "Usage: jul [target](.jul) <options>");
     }
 
-    std::vector<std::string> sourceFiles = {};
+    std::vector<std::string> source_files = {};
 
     for (auto i = 1; i < argc; ++i) {
         if (argv[i][0] != '-') {
@@ -28,17 +28,17 @@ auto main(int argc, char **argv) -> int
                 compiler::error(
                     std::format("Could not find file {}", std::string_view(f)));
             }
-            sourceFiles.push_back(f);
+            source_files.push_back(f);
         } else {
             compiler::todo("Parse compiler options");
         }
     }
 
-    compiler::Lexer Lexer{};
-    Lexer.tokenizeFile(sourceFiles[0]);
+    compiler::Lexer lexer{};
+    lexer.tokenize_file(source_files[0]);
 
-    compiler::Parser Parser{};
-    Parser.parseTokens(Lexer.getTokensList());
+    compiler::Parser parser{};
+    parser.parse_tokens(lexer.get_tokens_list());
 
     return 0;
 }
