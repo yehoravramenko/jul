@@ -39,7 +39,7 @@ auto Lexer::isKeyword(std::string_view Value) -> bool
 auto Lexer::getNextToken() -> void
 {
     this->tokens.push_back(Token{});
-    auto tok = &this->tokens.at(this->tokens.size() - 1);
+    const auto tok = &this->tokens.at(this->tokens.size() - 1);
 
     while (true) {
         do {
@@ -110,20 +110,20 @@ auto Lexer::getNextToken() -> void
             return;
         }
 
-        // compiler::todo("Parse other tokens in the file");
-        compiler::error("Unexpected character {}",
-                        std::string(1, this->curChar));
+        compiler::error(std::format("Unexpected character {}",
+                                    std::string(1, this->curChar)));
     }
 }
 
 auto Lexer::debugTokens() -> void
 {
     for (auto &tok : this->tokens) {
-        compiler::log("TOKEN: {}", compiler::TokenNames.at(tok.type));
+        compiler::log(
+            std::format("TOKEN: {}", compiler::TokenNames.at(tok.type)));
         if (tok.type == TokenType::Identifier ||
             tok.type == TokenType::Keyword) {
-            compiler::log("\tVALUE: {}",
-                          std::get<std::string>(tok.stringValue));
+            compiler::log(std::format("\tVALUE: {}",
+                                      std::get<std::string>(tok.stringValue)));
         }
     }
 }

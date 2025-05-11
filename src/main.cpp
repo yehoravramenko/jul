@@ -25,7 +25,8 @@ auto main(int argc, char **argv) -> int
                 f += ".jul";
             }
             if (!fs::exists(f)) {
-                compiler::error("Could not find file {}", std::string_view(f));
+                compiler::error(
+                    std::format("Could not find file {}", std::string_view(f)));
             }
             sourceFiles.push_back(f);
         } else {

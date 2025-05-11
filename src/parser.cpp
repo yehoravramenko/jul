@@ -9,9 +9,9 @@ namespace compiler
 inline auto Parser::expect(const Token &token) -> void
 {
     if (this->currentToken->type != token.type) {
-        compiler::error("Expected {}, got {}",
-                        compiler::TokenNames.at(token.type),
-                        compiler::TokenNames.at(this->currentToken->type));
+        compiler::error(std::format(
+            "Expected {}, got {}", compiler::TokenNames.at(token.type),
+            compiler::TokenNames.at(this->currentToken->type)));
     }
 }
 

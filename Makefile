@@ -4,7 +4,7 @@ CC := g++
 
 OBJ_DIR := obj
 BUILD_DIR := build
-SOURCE_FILES := main.cpp lexer.cpp parser.cpp
+SOURCE_FILES := main.cpp lexer.cpp parser.cpp compiler_msg.cpp
 
 FMTLIB_INC := -Ithirdparty/fmt/include
 
